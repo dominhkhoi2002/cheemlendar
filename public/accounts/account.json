@@ -1,0 +1,27 @@
+[
+  {
+    "username": "nimi",
+    "password": "123456",
+    "userid": 0
+  },
+  {
+    "username": "kien",
+    "password": "123456",
+    "userid": 1
+  },
+  {
+    "username": "umaru",
+    "password": "123456",
+    "userid": 2
+  },
+  {
+    "username": "zang",
+    "password": "123456",
+    "userid": 3
+  },
+  {
+    "username": "punny",
+    "password": "123456",
+    "userid": 4
+  }
+]

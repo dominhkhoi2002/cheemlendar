@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../public/Fonts/Roboto/Roboto-Regular.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Black.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-BlackItalic.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Bold.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Italic.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Light.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-LightItalic.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Medium.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-MediumItalic.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-Thin.ttf") format("truetype"),
+    url("../../public/Fonts/Roboto/Roboto-ThinItalic.ttf") format("truetype");
+}
+
+:root {
+  background-color: #f8f8f8;
+  font-family: "Roboto" !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
