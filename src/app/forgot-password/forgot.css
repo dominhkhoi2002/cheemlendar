@@ -1,0 +1,44 @@
+.bottom-form-ctn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 30px;
+  margin-right: 54px;
+  gap: 30px;
+  /* row-gap: 30px; */
+}
+.page {
+  background-color: #f6f6f6;
+}
+
+.forgot-form {
+  width: 600px;
+  height: 320px;
+  margin: 100px auto 0px;
+  background-color: white;
+  border-radius: 32px;
+}
+.forgot-text {
+  font-size: 24px;
+  color: #1b2430;
+  margin: 0px auto 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: max-content;
+}
+
+.forgot-2-text {
+  font-size: 15px;
+  color: #32403b;
+  margin: 0px auto 0px;
+  padding-bottom: 35px;
+  width: max-content;
+}
+.forgot-input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px auto 0px;
+  gap: 18px;
+}
