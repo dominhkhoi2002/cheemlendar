@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import InputField from '@/components/InputField';
-import './forgot.css';
+import '../forgot-password/forgot.css';
+import './change.css';
 import {
   AppleFilled,
   GoogleCircleFilled,
@@ -16,7 +17,8 @@ import accountData from '../../../public/accounts/account.json';
 type Props = {};
 
 const page = (props: Props) => {
-  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [Copassword, setCoPassword] = useState('');
   useEffect(() => {
     console.log(accountData);
   }, []);
@@ -26,22 +28,26 @@ const page = (props: Props) => {
         <Navbar activeNav="home" />
       </div>
       <div className="page">
-        <div className="forgot-form">
-          <div className="forgot-text">Khôi phục tài khoản của bạn</div>
-          <div className="forgot-2-text">
-            Vui lòng nhập email hoặc số di động để khôi phục tài khoản của bạn.
-          </div>
+        <div className="change-form">
+          <div className="forgot-text">Reset password</div>
           <div className="forgot-input-field">
             <InputField
-              icon={<MailOutlined style={{ fontSize: '16px' }} />}
+              icon={<KeyOutlined style={{ fontSize: '16px' }} />}
               type={1}
-              title={'Email'}
-              text="monke@gmail.com"
-              setInputValue={setUsername}
+              title={'Password'}
+              password={true}
+              setInputValue={setPassword}
+            />
+            <InputField
+              icon={<KeyOutlined style={{ fontSize: '16px' }} />}
+              type={1}
+              title={'Confirm Password'}
+              password={true}
+              setInputValue={setCoPassword}
             />
           </div>
           <div className="bottom-form-ctn-row">
-            <Link className={'cancel-button-ctn'} href={'login'}>
+            <Link className={'cancel-button-ctn'} href={'forgot-password'}>
               Hủy
             </Link>
             <div className="forgot-button-ctn">
@@ -53,7 +59,7 @@ const page = (props: Props) => {
                   height: '48px',
                 }}
                 onClick={() => {}}>
-                Khôi phục
+                Change password
               </Button>
             </div>
           </div>
