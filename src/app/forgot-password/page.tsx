@@ -51,9 +51,10 @@ const page = (props: Props) => {
                   borderRadius: '10px',
                   width: '208px',
                   height: '48px',
-                }}
-                onClick={() => {}}>
-                Khôi phục
+                }}>
+                <Link className={'cancel-button-ctn'} href={'change-password'}>
+                  Khôi phục
+                </Link>
               </Button>
             </div>
           </div>
