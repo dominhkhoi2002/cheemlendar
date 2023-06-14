@@ -48,14 +48,14 @@ const page = (props: Props) => {
               icon={<MailOutlined style={{ fontSize: '16px' }} />}
               type={1}
               title={'username'}
-              text="enter your username"
+              text="Enter your username"
               setInputValue={setUsername}
             />
             <InputField
               icon={<MailOutlined style={{ fontSize: '16px' }} />}
               type={1}
               title={'email'}
-              text="enter your email"
+              text="Enter your email"
               setInputValue={setEmail}
             />
             <InputField
