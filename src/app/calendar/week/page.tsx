@@ -1,6 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation"
-import React from "react"
+import React, { useEffect } from "react"
 
 type Props = {}
 const getWeekNumber = () => {
@@ -12,7 +12,9 @@ const getWeekNumber = () => {
 
 const Page = (props: Props) => {
   let router = useRouter()
-  router.push(`/calendar/week/${getWeekNumber()}`)
+  useEffect(() => {
+    router.push(`/calendar/week/${getWeekNumber()}`)
+  }, [])
   return <div></div>
 }
 

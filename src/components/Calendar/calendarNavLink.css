@@ -1,0 +1,19 @@
+.nav-link-disable,
+.nav-link-disable:visited {
+  font-size: 14px;
+  font-weight: bold;
+  color: #222831;
+  opacity: 50%;
+  text-decoration: none;
+}
+.nav-link-active,
+.nav-link-active:visited {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff7e04;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
