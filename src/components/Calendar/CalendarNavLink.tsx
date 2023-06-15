@@ -8,7 +8,7 @@ type Props = {
 
 const CalendarNavLink = (props: Props) => {
   return (
-    <Link href={props.text.toLowerCase()} className={`nav-link-${props.active ? "active" : "disable"}`}>
+    <Link href={`/calendar/${props.text.toLowerCase()}`} className={`nav-link-${props.active ? "active" : "disable"}`}>
       {props.text}
     </Link>
   )

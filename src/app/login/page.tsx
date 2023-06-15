@@ -8,6 +8,7 @@ import { AppleFilled, GoogleCircleFilled, KeyOutlined, MailOutlined, TwitterCirc
 import Link from "next/link"
 import Button from "@/components/Button"
 import accountData from "../../../public/accounts/account.json"
+import { Divider } from "antd"
 type Props = {}
 
 const page = (props: Props) => {
@@ -29,6 +30,9 @@ const page = (props: Props) => {
             <GoogleCircleFilled style={{ fontSize: "48px" }} />
             <AppleFilled style={{ fontSize: "48px" }} />
             <TwitterCircleFilled style={{ fontSize: "48px" }} />
+          </div>
+          <div style={{ width: "80%", margin: "0 auto 40px" }}>
+            <Divider style={{ color: "#8D9298" }}>OR</Divider>
           </div>
           <div className="login-input-field">
             <InputField
