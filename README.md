@@ -7,13 +7,20 @@ git clone git@github.com:Minh-19102/cheemlendar.git
 ```
 
 2. Chạy môi trường phát triển
-   Vào thư mục dự án
+
+- Vào thư mục dự án
 
 ```bash
 cd cheemlendar
 ```
 
-Chạy server
+- Tải các package cần thiết
+
+```bash
+npm install
+```
+
+- Chạy server
 
 ```bash
 npm run dev
