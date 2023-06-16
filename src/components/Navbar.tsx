@@ -61,6 +61,7 @@ const Navbar = (props: Props) => {
                   <p>Help</p>
                   <Button
                     type="secondary"
+                    styles={{ padding: "0px" }}
                     onClick={() => {
                       localStorage.setItem("uid", "-1")
                       window.location.reload()
