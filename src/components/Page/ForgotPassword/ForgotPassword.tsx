@@ -1,15 +1,16 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import Navbar from "@/components/Navbar"
-import InputField from "@/components/InputField"
-import "./forgot.css"
-import { MailOutlined } from "@ant-design/icons"
-import Link from "next/link"
-import Button from "@/components/Button"
-type Props = {}
+'use client';
+import React, { useEffect, useState } from 'react';
+import Navbar from '@/components/Navbar';
+import InputField from '@/components/InputField';
+import './forgot.css';
+import { MailOutlined } from '@ant-design/icons';
+import Link from 'next/link';
+import Button from '@/components/Button';
+import ModalContainer from '@/components/Modal/ModalContainer';
+type Props = {};
 
 const page = (props: Props) => {
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState('');
   return (
     <div>
       <div>
@@ -17,40 +18,36 @@ const page = (props: Props) => {
       </div>
       <div className="page">
         <div className="forgot-form">
-          <div className="forgot-text">Khôi phục tài khoản của bạn</div>
-          <div className="forgot-2-text">Vui lòng nhập email hoặc số di động để khôi phục tài khoản của bạn.</div>
+          <div className="forgot-text">Restore your account</div>
+          <div className="forgot-2-text">
+            Please enter your email or mobile number to recover your account.
+          </div>
           <div className="forgot-input-field">
             <InputField
-              icon={<MailOutlined style={{ fontSize: "16px" }} />}
+              icon={<MailOutlined style={{ fontSize: '16px' }} />}
               type={1}
-              title={"Email"}
+              title={'Email'}
               text="monke@gmail.com"
               setInputValue={setUsername}
             />
           </div>
           <div className="bottom-form-ctn-row">
-            <Link className={"cancel-button-ctn"} href={"login"}>
-              Hủy
+            <Link className={'cancel-button-ctn'} href={'login'}>
+              Cancel
             </Link>
             <div className="forgot-button-ctn">
-              <Button
-                type="primary"
-                styles={{
-                  borderRadius: "10px",
-                  width: "208px",
-                  height: "48px",
-                }}
-              >
-                <Link className={"cancel-button-ctn"} href={"change-password"}>
-                  Khôi phục
-                </Link>
-              </Button>
+              <ModalContainer
+                text="Restore"
+                location="/change-password"
+                notification="Open the link in your email to verify and reset your password"
+                messenger="Move to password change page"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

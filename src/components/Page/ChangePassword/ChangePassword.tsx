@@ -1,17 +1,18 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import Navbar from "@/components/Navbar"
-import InputField from "@/components/InputField"
-import "../forgot-password/forgot.css"
-import "./change.css"
-import { KeyOutlined } from "@ant-design/icons"
-import Link from "next/link"
-import Button from "@/components/Button"
-type Props = {}
+'use client';
+import React, { useEffect, useState } from 'react';
+import Navbar from '@/components/Navbar';
+import InputField from '@/components/InputField';
+import '../forgotPassword/forgot.css';
+import './change.css';
+import { KeyOutlined } from '@ant-design/icons';
+import Link from 'next/link';
+import Button from '@/components/Button';
+import ModalContainer from '@/components/Modal/ModalContainer';
+type Props = {};
 
 const ChangePassword = (props: Props) => {
-  const [password, setPassword] = useState("")
-  const [Copassword, setCoPassword] = useState("")
+  const [password, setPassword] = useState('');
+  const [Copassword, setCoPassword] = useState('');
   return (
     <div>
       <div>
@@ -22,42 +23,37 @@ const ChangePassword = (props: Props) => {
           <div className="forgot-text">Reset password</div>
           <div className="forgot-input-field">
             <InputField
-              icon={<KeyOutlined style={{ fontSize: "16px" }} />}
+              icon={<KeyOutlined style={{ fontSize: '16px' }} />}
               type={1}
-              title={"Password"}
+              title={'Password'}
               password={true}
               setInputValue={setPassword}
             />
             <InputField
-              icon={<KeyOutlined style={{ fontSize: "16px" }} />}
+              icon={<KeyOutlined style={{ fontSize: '16px' }} />}
               type={1}
-              title={"Confirm Password"}
+              title={'Confirm Password'}
               password={true}
               setInputValue={setCoPassword}
             />
           </div>
           <div className="bottom-form-ctn-row">
-            <Link className={"cancel-button-ctn"} href={"forgot-password"}>
+            <Link className={'cancel-button-ctn'} href={'forgot-password'}>
               Hủy
             </Link>
             <div className="forgot-button-ctn">
-              <Button
-                type="primary"
-                styles={{
-                  borderRadius: "10px",
-                  width: "208px",
-                  height: "48px",
-                }}
-                onClick={() => {}}
-              >
-                Change password
-              </Button>
+              <ModalContainer
+                text="Change"
+                location="/login"
+                notification="Are you sure about that"
+                messenger="Password has been changed, return to the login page."
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChangePassword
+export default ChangePassword;
