@@ -1,0 +1,9 @@
+.week-header {
+  display: flex;
+}
+.grid-view {
+  height: 75vh;
+  width: max-content;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
