@@ -52,7 +52,7 @@ const CalendarMenu = (props: Props) => {
         </Sider>
         <Layout>
           <CalendarHeader activeNav={props.activeNav} />
-          <Content style={{ margin: "24px 16px 0" }}>
+          <Content style={{ margin: "12px 16px 0" }}>
             <div>{props.content}</div>
           </Content>
         </Layout>
