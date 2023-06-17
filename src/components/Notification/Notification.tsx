@@ -1,11 +1,14 @@
 import React from 'react';
-import './notification.css';
+// import './notification.css';
+
+type Props = {
+  img: any;
+};
 const Notification = () => {
   return (
     <div className="notification">
-      <div className="notification-content">
-        <p>alo</p>
-      </div>
+      <div className="notification-opening">Notification</div>
+      <div className="notification-content"></div>
     </div>
   );
 };
