@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
-import "./landing.css";
+import "./home.css";
 import Button from "@/components/Button";
 import Image from "next/image";
 import Link from "next/link";

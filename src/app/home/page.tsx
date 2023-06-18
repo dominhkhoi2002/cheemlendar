@@ -1,9 +1,9 @@
 import React from "react";
-import Landing from "@/components/Page/Landing/Landing";
+import Home from "@/components/Page/Home/Home";
 type Props = {}
 
 const page = (props: Props) => {
-  return <Landing></Landing>
+  return <Home></Home>
 }
 
 export default page
