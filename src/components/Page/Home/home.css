@@ -30,22 +30,17 @@
     ;
     color: rgba(37, 37, 37, 0.8);
 }
-.left-panel {
-    float: left;
-    width: 50%;
-    padding: 10px;
-}
 .right-panel {
     float: right;
     width: 50%;
     padding: 10px;
 }
-.Image {
+.right-panel Img {
     position: absolute;
-    width: 597px;
-    height: 362px;
-    left: 633px;
-    top: 211px;
+    top: 45%;
+    left: 55%;
+    transform: translate(0, -50%);
+    max-width: 100%;
 }
 .button-ctn
 {

@@ -22,7 +22,7 @@ const AboutPage: React.FC<Props> = () => {
                
             </div>
             <div className="right-panel">
-            <Image className="Image" src="/Image.png" width={597} height={362} alt="Image" />
+                <Image src="/Image.png" width={500} height={397} alt="Img" /> 
             </div>
         </div>
     );
