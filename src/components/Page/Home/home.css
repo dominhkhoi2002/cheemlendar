@@ -1,0 +1,17 @@
+.page {
+    background-color: #f6f6f6;
+    
+}
+.about-header {
+    font-size: 35px; 
+}
+.left-panel {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+.right-panel {
+    float: right;
+    width: 50%;
+    padding: 10px;
+}
