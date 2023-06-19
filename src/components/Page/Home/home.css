@@ -1,58 +1,45 @@
 .page {
-    background-color: #f6f6f6;
-    
+    background-color: #f6f6f6;    
 }
+.landing{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+}
+
 .about-header {
-    position: absolute;
     width: 637px;
-    height: 88px;
-    left: 70px;
-    top: 200px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 72px;
-    line-height: 88px;
 }
 .describe {
-    position: absolute;
     width: 519px;
-    height: 84px;
-    left: 70px;
-    top: 333px;
-    
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 28px;
-    ;
     color: rgba(37, 37, 37, 0.8);
 }
-.right-panel {
-    float: right;
-    width: 50%;
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    align-items: flex-start;
+    width: 40%;
     padding: 10px;
+    padding-top: 15vh;
 }
-.right-panel Img {
-    position: absolute;
-    top: 45%;
-    left: 55%;
-    transform: translate(0, -50%);
-    max-width: 100%;
+.right-panel {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    padding-top: 20vh;
 }
 .button-ctn
 {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 24px 48px;
+    padding: 0px;
     gap: 10px;
-    
-    position: absolute;
     width: 176px;
     height: 66px;
-    left: 20px;
-    top: 463px;
 }
