@@ -1,0 +1,45 @@
+.page {
+    background-color: #f6f6f6;    
+}
+.landing{
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+}
+
+.about-header {
+    width: 637px;
+    font-weight: bold;
+    font-size: 72px;
+}
+.describe {
+    width: 519px;
+    font-weight: 400;
+    font-size: 24px;
+    color: rgba(37, 37, 37, 0.8);
+}
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    align-items: flex-start;
+    width: 40%;
+    padding: 10px;
+    padding-top: 15vh;
+}
+.right-panel {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    padding-top: 20vh;
+}
+.button-ctn
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    width: 176px;
+    height: 66px;
+}
