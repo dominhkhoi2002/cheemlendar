@@ -99,7 +99,6 @@ const Notification = () => {
   const [isReaded, setIsReaded] = useState('read');
   const filteredData = data.filter(item => item.type === isReaded);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
-  console.log(filteredData);
   return (
     <div className="notification">
       <div className="notification-opening">Notification</div>
@@ -110,6 +109,7 @@ const Notification = () => {
             borderRadius: '10px',
             width: '82px',
             height: '31px',
+            padding: '10px',
           }}
           onClick={() => {
             handleClick();
@@ -122,6 +122,7 @@ const Notification = () => {
             borderRadius: '10px',
             width: '82px',
             height: '31px',
+            padding: '10px',
           }}
           onClick={() => {
             handleClick();

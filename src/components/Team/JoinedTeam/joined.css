@@ -1,0 +1,10 @@
+.joined-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.joined-input {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

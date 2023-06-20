@@ -1,9 +1,11 @@
-import React from "react"
+'use client';
+import JoinedTeam from '@/components/Team/JoinedTeam/joined';
 
-type Props = {}
+import React, { useEffect, useState } from 'react';
+type Props = {};
 
 const page = (props: Props) => {
-  return <div>team</div>
-}
+  return <JoinedTeam></JoinedTeam>;
+};
 
-export default page
+export default page;
