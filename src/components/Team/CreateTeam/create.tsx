@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Create_Form from './create-form';
 import Return from '@/components/return';
+import Member_Task from '../TeamTask/taskMember';
 type Props = {};
 const CreateTeam = (props: Props) => {
   const handleSearch = (searchInput: string) => {
@@ -67,10 +68,7 @@ const CreateTeam = (props: Props) => {
                 options={teams}
               />
             </div>
-            <ModalForm
-              form={<Create_Form></Create_Form>}
-              title="Creat your teams"
-            />
+            <ModalForm form={<Create_Form />} title="Creat your teams" />
           </div>
         </div>
         <div className="create-body"></div>

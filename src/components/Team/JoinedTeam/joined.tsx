@@ -54,7 +54,7 @@ const JoinedTeam = (props: Props) => {
       <Navbar activeNav={'home'} />
       <div className="joined-team">
         <div className="joined-header">
-          <div className="joined-text">Joined Teamd</div>
+          <div className="joined-text">Joined Team</div>
           <div className="joined-input">
             <div className="joined-seaerch">
               <Select

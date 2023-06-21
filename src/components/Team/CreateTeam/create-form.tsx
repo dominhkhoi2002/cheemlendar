@@ -6,13 +6,6 @@ import accountData from '../../../../public/accounts/account.json';
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
-
 const Create_Form: React.FC = () => {
   return (
     <div className="create-form">
@@ -41,7 +34,7 @@ const Create_Form: React.FC = () => {
             <Select
               mode="tags"
               style={{ width: '100%' }}
-              placeholder="Tags Mode"
+              placeholder="Enter member name"
               options={accountData}
             />
           </Form.Item>
