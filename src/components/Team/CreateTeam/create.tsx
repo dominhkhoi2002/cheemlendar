@@ -4,11 +4,11 @@ import { Input, Space } from 'antd';
 import './create.css';
 import { Select } from 'antd';
 import ModalForm from '@/components/Modal/ModalForm';
-import type { SelectProps } from 'antd';
-import createForm from './create-form';
 
+import Link from 'next/link';
 import Button from '@/components/Button';
 import Create_Form from './create-form';
+import Return from '@/components/return';
 type Props = {};
 const CreateTeam = (props: Props) => {
   const handleSearch = (searchInput: string) => {
@@ -43,7 +43,9 @@ const CreateTeam = (props: Props) => {
   ];
   return (
     <div className="page">
-      <Navbar activeNav={'home'} />
+      <div className="return-button">
+        <Return></Return>
+      </div>
       <div className="create-team">
         <div className="create-header">
           <div className="create-text">Join or create a teams</div>
