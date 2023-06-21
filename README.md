@@ -20,9 +20,26 @@ cd cheemlendar
 npm install
 ```
 
+- Cấu hình API
+
+```bash
+cd api
+npm install
+```
+
+- Seeding data:
+
+  - Mở XAMPP chạy MySQL database port 3306
+  - Chạy script
+
+```bash
+npm run create_db
+```
+
 - Chạy server
 
 ```bash
+cd ..
 npm run dev
 # or
 yarn dev

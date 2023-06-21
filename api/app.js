@@ -1,30 +1,15 @@
-var path = require('path');
-const express = require('express');
-const { engine } = require('express-handlebars');
-const morgan = require('morgan');
-const User = require('./Models/Users');
-const db = require('./config/db');
-
-//Connect to db
-db.connect();
-
-// const handlebars = require("express-handlebars").engine;
-const app = express();
-const port = 8000;
-/* MIDDLEWARE */
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded());
-app.use(express.json());
-app.use(morgan('combined'));
-
-// app.set('view engine', 'hbs');
-// app.set('views', './views');
-// app.set('views', path.join(__dirname, 'resources', 'views'));
+var path = require("path")
+const express = require("express")
+const User = require("./Models/Users")
+const pool = require("./config/db")
+const cors = require("cors")
+app.use(express.json())
+app.use(cors())
+app.use(express.static(path.join(__dirname, "public")))
 //route
-const routes = require('./routers');
+const routes = require("./routers")
 
-routes(app);
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+routes(app)
+app.listen(5000, () => {
+  console.log(`App listening on port ${port}`)
+})

@@ -1,6 +1,9 @@
 import React from "react"
 import "./weekgrid.css"
-type Props = {}
+import Event from "./Event"
+type Props = {
+  weekStart: Date
+}
 const Line = (hour: number) => {
   return (
     <>
@@ -21,6 +24,34 @@ const WeekGrid = (props: Props) => {
           {Line(id)}
         </div>
       ))}
+      <Event
+        weekStart={props.weekStart}
+        timeStart={new Date("2023-07-19 11:13:00")}
+        timeEnd={new Date("2023-07-19 13:13:00")}
+        category={0}
+        name={"Hello"}
+      ></Event>
+      <Event
+        weekStart={props.weekStart}
+        timeStart={new Date("2023-07-23 10:13:00")}
+        timeEnd={new Date("2023-07-23 14:25:00")}
+        category={1}
+        name={"Hello"}
+      ></Event>
+      <Event
+        weekStart={props.weekStart}
+        timeStart={new Date("2023-07-24 06:00:00")}
+        timeEnd={new Date("2023-07-24 08:20:00")}
+        category={2}
+        name={"Hello"}
+      ></Event>
+      <Event
+        weekStart={props.weekStart}
+        timeStart={new Date("2023-07-24 10:00:00")}
+        timeEnd={new Date("2023-07-24 12:20:00")}
+        category={3}
+        name={"Hello"}
+      ></Event>
     </>
   )
 }

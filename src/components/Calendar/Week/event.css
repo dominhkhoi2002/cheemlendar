@@ -1,0 +1,15 @@
+.event {
+  position: absolute;
+  width: 141px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border-left: 3px solid;
+}
+.task-time,
+.task-name {
+  font-weight: bold;
+  padding: 5px;
+}
+.task-name {
+}
