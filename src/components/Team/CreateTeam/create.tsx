@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import Link from 'next/link';
-import './joined.css';
+import { Input, Space } from 'antd';
+import './create.css';
 import { Select } from 'antd';
-import type { SelectProps } from 'antd';
-// import Search from '@/components/search';
+import ModalForm from '@/components/Modal/ModalForm';
 
-// const options: SelectProps['options'] = [];
-// const handleChange = (value: string) => {
-//   console.log(`selected ${value}`);
-// };
-// for (let i = 10; i < 36; i++) {
-//   options.push({
-//     value: i.toString(36) + i,
-//     label: i.toString(36) + i,
-//   });
-// }
+import Link from 'next/link';
 import Button from '@/components/Button';
+import Create_Form from './create-form';
+import Return from '@/components/return';
+import Member_Task from '../TeamTask/taskMember';
 type Props = {};
-const JoinedTeam = (props: Props) => {
+const CreateTeam = (props: Props) => {
   const handleSearch = (searchInput: string) => {
     // Xử lý giá trị searchInput tại đây
   };
@@ -51,12 +44,14 @@ const JoinedTeam = (props: Props) => {
   ];
   return (
     <div className="page">
-      <Navbar activeNav={'home'} />
-      <div className="joined-team">
-        <div className="joined-header">
-          <div className="joined-text">Joined Team</div>
-          <div className="joined-input">
-            <div className="joined-seaerch">
+      <div className="return-button">
+        <Return href="./team" text="Joined Team" />
+      </div>
+      <div className="create-team">
+        <div className="create-header">
+          <div className="create-text">Join or create a teams</div>
+          <div className="create-input">
+            <div className="create-seaerch">
               <Select
                 showSearch
                 style={{ width: 400 }}
@@ -73,25 +68,12 @@ const JoinedTeam = (props: Props) => {
                 options={teams}
               />
             </div>
-            <Button
-              type="primary"
-              styles={{
-                borderRadius: '10px',
-                width: '208px',
-                height: '48px',
-              }}
-              onClick={() => {
-                console.log({});
-              }}>
-              <Link className={'joined-button-ctn'} href={'create-team'}>
-                Join or create a team
-              </Link>
-            </Button>
+            <ModalForm form={<Create_Form />} title="Creat your teams" />
           </div>
         </div>
-        <div className="joined-body"></div>
+        <div className="create-body"></div>
       </div>
     </div>
   );
 };
-export default JoinedTeam;
+export default CreateTeam;
