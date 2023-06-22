@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import './weekgrid.css'
 import Event from './Event'
 import axios from 'axios'
+import { Modal } from 'antd'
+import EventModal from '@/components/Modal/EventModal'
 type Props = {
 	weekStart: Date
 }
@@ -26,6 +28,11 @@ const Line = (hour: number) => {
 }
 const WeekGrid = (props: Props) => {
 	const [events, setEvents] = useState([])
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const showModal = () => {
+		setIsModalOpen(true)
+	}
+	const [modalData, setModalData] = useState(<></>)
 	useEffect(() => {
 		const getEvents = async (weekStart: Date) => {
 			try {
@@ -66,9 +73,19 @@ const WeekGrid = (props: Props) => {
 							category={e['color_theme']}
 							name={e['event_title']}
 							description={e['description']}
-							color_theme={e['color_theme']}></Event>
+							color_theme={e['color_theme']}
+							setIsModalOpen={setIsModalOpen}
+							setModalData={setModalData}></Event>
 					)
 				})}
+			<Modal
+				style={{ zIndex: 1000 }}
+				open={isModalOpen}
+				onCancel={() => {
+					setIsModalOpen(false)
+				}}>
+				{modalData}
+			</Modal>
 		</>
 	)
 }
