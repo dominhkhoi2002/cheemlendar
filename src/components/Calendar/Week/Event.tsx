@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Popover, Divider, Button } from 'antd'
 import './event.css'
 import { ClockCircleTwoTone, DeleteTwoTone, EditTwoTone } from '@ant-design/icons'
+import EventModal from '@/components/Modal/EventModal'
 type Props = {
 	color_theme: number
 	key?: any
@@ -11,6 +12,8 @@ type Props = {
 	category: number
 	name: string
 	description: string
+	setIsModalOpen: any
+	setModalData: any
 }
 
 const colorStyles = [
@@ -43,6 +46,7 @@ const formatTime = (date: Date): string => {
 	return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
 }
 const Event = (props: Props) => {
+	const popoverRef = useRef(null)
 	function event_content(props: Props) {
 		return (
 			<div className='custom-pop-over'>
@@ -58,14 +62,28 @@ const Event = (props: Props) => {
 				<div className='description'>{props.description}</div>
 				<div className='popover-btn-ctn'>
 					<DeleteTwoTone twoToneColor={'#FF4545'} style={{ cursor: 'pointer' }} />
-					<EditTwoTone style={{ cursor: 'pointer' }} />
+					<EditTwoTone
+						style={{ cursor: 'pointer' }}
+						onClick={() => {
+							props.setIsModalOpen(true)
+							props.setModalData(
+								<EventModal
+									activeNav={'edit'}
+									title={props.name}
+									timeStart={props.timeStart}
+									timeEnd={props.timeEnd}
+									description={props.description}
+								/>,
+							)
+						}}
+					/>
 				</div>
 			</div>
 		)
 	}
 
 	return (
-		<Popover content={event_content(props)} trigger={'click'}>
+		<Popover content={event_content(props)} trigger={'click'} color={'#F5F5F5'} zIndex={998}>
 			<div
 				key={props.key}
 				className='event'
