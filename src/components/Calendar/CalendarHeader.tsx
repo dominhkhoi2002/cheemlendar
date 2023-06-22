@@ -16,7 +16,11 @@ const Navbar = (props: Props) => {
   const [avatar, setAvatar] = useState("")
 
   useEffect(() => {
-    if (uid == -1) setUid(localStorage.getItem("uid"))
+    const storedUid = localStorage.getItem("uid")
+    if (storedUid !== null) {
+      const parsedUid = parseInt(storedUid)
+      setUid(parsedUid)
+    }
   }, [])
   useEffect(() => {
     if (uid != -1) setAvatar(`/accounts/Avatar/${uid}.jpg`)

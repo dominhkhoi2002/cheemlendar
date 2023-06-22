@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation"
 import React from "react"
 
-type Props = {}
 const getWeekNumber = () => {
   const now: any = new Date()
   const startOfYear: any = new Date(now.getFullYear(), 0, 1)
@@ -10,7 +9,7 @@ const getWeekNumber = () => {
   return weekNumber
 }
 
-const Page = (props: Props) => {
+const Page = () => {
   let router = useRouter()
   router.push(`/calendar/week/${getWeekNumber()}`)
   return <div></div>

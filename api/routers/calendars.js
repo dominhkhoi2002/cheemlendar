@@ -2,11 +2,11 @@ const express = require("express")
 const router = express.Router()
 
 module.exports = (pool) => {
-  // GET /api/users
+  // GET /api/calendars
   router.get("/", (req, res) => {
-    pool.query("SELECT * FROM User", (error, results) => {
+    pool.query("SELECT * FROM Calendar", (error, results) => {
       if (error) {
-        console.error("Error retrieving users:", error)
+        console.error("Error retrieving calendars:", error)
         res.status(500).json({ error: "Internal server error" })
         return
       }
@@ -14,18 +14,18 @@ module.exports = (pool) => {
     })
   })
 
-  // POST /api/users
+  // POST /api/calendars
   router.post("/", (req, res) => {
-    const { username, email, name, password } = req.body
-    const query = "INSERT INTO User (username, email, name, password) VALUES (?, ?, ?, ?)"
-    const values = [username, email, name, password]
+    const { calendarName, userId } = req.body
+    const query = "INSERT INTO Calendar (calendar_name, user_id) VALUES (?, ?)"
+    const values = [calendarName, userId]
     pool.query(query, values, (error, result) => {
       if (error) {
-        console.error("Error creating user:", error)
+        console.error("Error creating calendar:", error)
         res.status(500).json({ error: "Internal server error" })
         return
       }
-      res.status(201).json({ message: "User created successfully" })
+      res.status(201).json({ message: "Calendar created successfully" })
     })
   })
 

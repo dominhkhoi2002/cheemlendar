@@ -1,18 +1,11 @@
 import CalendarMenu from "@/components/Calendar/CalendarMenu"
 import WeekCalendar from "@/components/Calendar/Week/WeekCalendar"
 import React from "react"
-type Props = {
-  weekNumber: number
-}
 
 const content = () => {
-  return (
-    <div>
-      <WeekCalendar />
-    </div>
-  )
+  return <div>{<WeekCalendar />}</div>
 }
-export default function Page(props: Props) {
+export default function Page() {
   return (
     <div>
       <CalendarMenu content={content()} activeNav={"Week"}></CalendarMenu>

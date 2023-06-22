@@ -1,8 +1,16 @@
-import React from "react"
+"use client"
+import React, { useEffect, useState } from "react"
 import "./weekgrid.css"
 import Event from "./Event"
+import axios from "axios"
 type Props = {
   weekStart: Date
+}
+const API_BASE_URL = "http://localhost:4001/api"
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+  "Content-Type": "application/json",
 }
 const Line = (hour: number) => {
   return (
@@ -17,6 +25,29 @@ const Line = (hour: number) => {
   )
 }
 const WeekGrid = (props: Props) => {
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    const getEvents = async (weekStart: Date) => {
+      try {
+        let tmpDate = weekStart.getDate() + 7
+        let endDate = new Date(weekStart)
+        endDate.setDate(tmpDate)
+        const response = await axios.post(
+          `${API_BASE_URL}/events/getAllEvents`,
+          {
+            userId: "1",
+            start_date: weekStart.toISOString().split("T")[0],
+            end_date: endDate.toISOString().split("T")[0],
+          },
+          { headers },
+        )
+        setEvents(response.data)
+      } catch (error) {
+        throw new Error("Error retrieving data")
+      }
+    }
+    getEvents(props.weekStart)
+  }, [])
   return (
     <>
       {Array.from(Array(24).keys()).map((e, id) => (
@@ -24,34 +55,19 @@ const WeekGrid = (props: Props) => {
           {Line(id)}
         </div>
       ))}
-      <Event
-        weekStart={props.weekStart}
-        timeStart={new Date("2023-07-19 11:13:00")}
-        timeEnd={new Date("2023-07-19 13:13:00")}
-        category={0}
-        name={"Hello"}
-      ></Event>
-      <Event
-        weekStart={props.weekStart}
-        timeStart={new Date("2023-07-23 10:13:00")}
-        timeEnd={new Date("2023-07-23 14:25:00")}
-        category={1}
-        name={"Hello"}
-      ></Event>
-      <Event
-        weekStart={props.weekStart}
-        timeStart={new Date("2023-07-24 06:00:00")}
-        timeEnd={new Date("2023-07-24 08:20:00")}
-        category={2}
-        name={"Hello"}
-      ></Event>
-      <Event
-        weekStart={props.weekStart}
-        timeStart={new Date("2023-07-24 10:00:00")}
-        timeEnd={new Date("2023-07-24 12:20:00")}
-        category={3}
-        name={"Hello"}
-      ></Event>
+      {events &&
+        events.map((e) => {
+          return (
+            <Event
+              key={e["event_id"]}
+              weekStart={props.weekStart}
+              timeStart={new Date(e["start_datetime"])}
+              timeEnd={new Date(e["end_datetime"])}
+              category={e["color_theme"]}
+              name={e["event_title"]}
+            ></Event>
+          )
+        })}
     </>
   )
 }

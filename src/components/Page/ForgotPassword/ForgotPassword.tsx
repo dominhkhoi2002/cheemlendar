@@ -1,16 +1,16 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import Navbar from '@/components/Navbar';
-import InputField from '@/components/InputField';
-import './forgot.css';
-import { MailOutlined } from '@ant-design/icons';
-import Link from 'next/link';
-import Button from '@/components/Button';
-import ModalContainer from '@/components/Modal/ModalContainer';
-type Props = {};
+"use client"
+import React, { useEffect, useState } from "react"
+import Navbar from "@/components/Navbar"
+import InputField from "@/components/InputField"
+import "./forgot.css"
+import { MailOutlined } from "@ant-design/icons"
+import Link from "next/link"
+import Button from "@/components/Button"
+import ModalContainer from "@/components/Modal/ModalContainer"
+type Props = {}
 
-const page = (props: Props) => {
-  const [username, setUsername] = useState('');
+const ForgotPassword = (props: Props) => {
+  const [username, setUsername] = useState("")
   return (
     <div>
       <div>
@@ -19,20 +19,18 @@ const page = (props: Props) => {
       <div className="page">
         <div className="forgot-form">
           <div className="forgot-text">Restore your account</div>
-          <div className="forgot-2-text">
-            Please enter your email or mobile number to recover your account.
-          </div>
+          <div className="forgot-2-text">Please enter your email or mobile number to recover your account.</div>
           <div className="forgot-input-field">
             <InputField
-              icon={<MailOutlined style={{ fontSize: '16px' }} />}
+              icon={<MailOutlined style={{ fontSize: "16px" }} />}
               type={1}
-              title={'Email'}
+              title={"Email"}
               text="monke@gmail.com"
               setInputValue={setUsername}
             />
           </div>
           <div className="bottom-form-ctn-row">
-            <Link className={'cancel-button-ctn'} href={'login'}>
+            <Link className={"cancel-button-ctn"} href={"login"}>
               Cancel
             </Link>
             <div className="forgot-button-ctn">
@@ -47,7 +45,7 @@ const page = (props: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default ForgotPassword
