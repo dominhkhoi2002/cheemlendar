@@ -17,6 +17,7 @@ CREATE TABLE Events (
     event_title VARCHAR(30),
     start_datetime DATETIME,
     end_datetime DATETIME,
+    color_theme INT,
     description VARCHAR(255),
     FOREIGN KEY(calendar_id) REFERENCES Calendar(calendar_id)
 );
@@ -61,18 +62,18 @@ INSERT INTO Calendar (calendar_name, user_id)
 VALUES ('Hust Calendar', 1),
       ('Work Calendar', 1);
 
-INSERT INTO Events (calendar_id, event_title, start_datetime, end_datetime, description)
-VALUES (1, 'AI Intro', '2023-06-19 08:25:00', '2023-06-19 11:45:00', 'Học Nhập môn AI tại D9-501'),
-      (1, 'ITSS', '2023-06-19 12:30:00', '2023-06-19 15:50:00', 'Học ITSS tại D9-501'),
-      (1, 'Tư tưởng HCM', '2023-06-19 16:00:00', '2023-06-19 17:30:00', 'Học tư tưởng HCM tại D9-401'),
-      (1, '日本語2', '2023-06-20 08:30:00', '2023-06-20 10:00:00', 'Học tiếng Nhật tại D9-405'),
-      (1, 'Software Engineering', '2023-06-21 15:05:00', '2023-06-21 17:30:00', 'Học kỹ thuật phần mềm tại D9-401'),
-      (1, 'IT日本語2', '2023-06-22 10:15:00', '2023-06-22 14:00:00', 'Học tiếng Nhật chuyên ngành tại B1-303'),
-      (1, '日本語6', '2023-06-23 08:30:00', '2023-06-23 10:00:00', 'Học tiếng Nhật tại D9-405'),
-      (1, 'UIUX', '2023-06-23 12:30:00', '2023-06-23 15:50:00', 'Học giao diện và trải nhiệm người dùng tại D9-401'),
-      (1, 'PLDC', '2023-06-23 16:00:00', '2023-06-23 17:30:00', 'Học Pháp luật đại cương tại D9-401'),
-      (2, 'Intern', '2023-06-21 08:00:00', '2023-06-21 11:30:00', 'Thực tập'),
-      (2, 'Intern', '2023-06-20 12:30:00', '2023-06-20 17:30:00', 'Thực tập');
+INSERT INTO Events (calendar_id, event_title, start_datetime, end_datetime, description, color_theme)
+VALUES (1, 'AI Intro', '2023-06-19 08:25:00', '2023-06-19 11:45:00', 'Học Nhập môn AI tại D9-501', 0),
+      (1, 'ITSS', '2023-06-19 12:30:00', '2023-06-19 15:50:00', 'Học ITSS tại D9-501', 0),
+      (1, 'Tư tưởng HCM', '2023-06-19 16:00:00', '2023-06-19 17:30:00', 'Học tư tưởng HCM tại D9-401', 0),
+      (1, '日本語2', '2023-06-20 08:30:00', '2023-06-20 10:00:00', 'Học tiếng Nhật tại D9-405', 0),
+      (1, 'Software Engineering', '2023-06-21 15:05:00', '2023-06-21 17:30:00', 'Học kỹ thuật phần mềm tại D9-401', 0),
+      (1, 'IT日本語2', '2023-06-22 10:15:00', '2023-06-22 14:00:00', 'Học tiếng Nhật chuyên ngành tại B1-303', 0),
+      (1, '日本語6', '2023-06-23 08:30:00', '2023-06-23 10:00:00', 'Học tiếng Nhật tại D9-405', 0),
+      (1, 'UIUX', '2023-06-23 12:30:00', '2023-06-23 15:50:00', 'Học giao diện và trải nhiệm người dùng tại D9-401', 0),
+      (1, 'PLDC', '2023-06-23 16:00:00', '2023-06-23 17:30:00', 'Học Pháp luật đại cương tại D9-401', 0),
+      (2, 'Intern', '2023-06-21 08:00:00', '2023-06-21 11:30:00', 'Thực tập', 1),
+      (2, 'Intern', '2023-06-20 12:30:00', '2023-06-20 17:30:00', 'Thực tập', 1);
 
 INSERT INTO Team (team_id, team_name, description)
 VALUES (1, 'SAMI sama', 'Vì 10 điểm giải tích, đại số'),

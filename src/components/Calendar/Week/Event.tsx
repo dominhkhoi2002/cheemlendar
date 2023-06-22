@@ -1,6 +1,7 @@
 import React from "react"
 import "./event.css"
 type Props = {
+  key?: any
   weekStart: Date
   timeStart: Date
   timeEnd: Date
@@ -40,6 +41,7 @@ const formatTime = (date: Date): string => {
 const Event = (props: Props) => {
   return (
     <div
+      key={props.key}
       className="event"
       style={{
         top: `${62 * props.timeStart.getHours() + (62 / 60) * props.timeStart.getMinutes()}px`,
