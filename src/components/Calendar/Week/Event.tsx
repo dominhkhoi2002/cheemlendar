@@ -46,7 +46,6 @@ const formatTime = (date: Date): string => {
 	return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
 }
 const Event = (props: Props) => {
-	const popoverRef = useRef(null)
 	function event_content(props: Props) {
 		return (
 			<div className='custom-pop-over'>
@@ -68,7 +67,7 @@ const Event = (props: Props) => {
 							props.setIsModalOpen(true)
 							props.setModalData(
 								<EventModal
-									activeNav={'edit'}
+									mode={'edit'}
 									title={props.name}
 									timeStart={props.timeStart}
 									timeEnd={props.timeEnd}

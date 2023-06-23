@@ -1,0 +1,11 @@
+.modalTitle {
+	border: none;
+	outline: none;
+	border-bottom: 2px;
+	border-color: #ff9a2e;
+	font-size: 30px;
+}
+.modalTitle:focus {
+	border: none;
+	box-shadow: none;
+}
