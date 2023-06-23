@@ -1,10 +1,22 @@
+.joined-team {
+  display: flex;
+  flex-direction: column;
+}
+
 .joined-header {
   display: flex;
   justify-content: space-between;
   margin: 20px;
   align-items: center;
 }
+.joined-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
+  height: 70vh;
+  overflow-y: scroll;
+}
 .joined-input {
   display: flex;
   justify-content: space-between;
@@ -17,4 +29,15 @@
   line-height: 21px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.team-infor-hidden {
+  display: none;
+}
+
+.ant-card-body {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 30px;
 }
