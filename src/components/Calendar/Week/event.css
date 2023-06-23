@@ -1,15 +1,35 @@
 .event {
-  position: absolute;
-  width: 141px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  border-left: 3px solid;
+	position: absolute;
+	width: 141px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	border-left: 3px solid;
+	cursor: pointer;
 }
 .task-time,
 .task-name {
-  font-weight: bold;
-  padding: 5px;
+	font-weight: bold;
+	padding: 5px;
 }
-.task-name {
+
+.custom-pop-over {
+	width: 300px;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+}
+.popover-title {
+	font-size: 24px;
+	font-weight: 700;
+}
+.description {
+	height: 100px;
+}
+.popover-btn-ctn {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
 }
