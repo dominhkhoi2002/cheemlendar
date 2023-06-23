@@ -1,10 +1,10 @@
 import { ClockCircleOutlined, MenuOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import React from 'react'
-
+import './event_modal.css'
 const modeOptions = ['create', 'edit'] as const
 type Props = {
-	activeNav: (typeof modeOptions)[number]
+	mode: (typeof modeOptions)[number]
 	title: string
 	timeStart: Date
 	timeEnd: Date
@@ -14,11 +14,11 @@ type Props = {
 const EventModal = (props: Props) => {
 	return (
 		<div>
-			<Input className='modalTitle' value={props.title} />
+			<Input className='modalTitle' defaultValue={props.title} placeholder='Add Title' />
 			<ClockCircleOutlined />
 			<Input placeholder='Add guests' />
 			<MenuOutlined />
-			<Input placeholder='Add description' value={props.description} />
+			<Input.TextArea rows={3} placeholder='Add description' defaultValue={props.description} />
 		</div>
 	)
 }

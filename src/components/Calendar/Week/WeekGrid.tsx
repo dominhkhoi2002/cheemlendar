@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './weekgrid.css'
 import Event from './Event'
 import axios from 'axios'
@@ -14,6 +14,7 @@ const headers = {
 	'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 	'Content-Type': 'application/json',
 }
+const [minX, maxX, minY, maxY] = [50, 1035, 0, 1490]
 const Line = (hour: number) => {
 	return (
 		<>
@@ -26,13 +27,73 @@ const Line = (hour: number) => {
 		</>
 	)
 }
+
+const calculateTimeOnPosition = (x: number, y: number, weekStart: Date): Date => {
+	let tmpDate = weekStart.getDate() + Math.floor((7 * (x - minX)) / (maxX - minX))
+	let calculatedDate = new Date(weekStart)
+	calculatedDate.setDate(tmpDate)
+	calculatedDate.setMinutes(15 * Math.round((96 * (y - minY)) / (maxY - minY)))
+	return calculatedDate
+}
 const WeekGrid = (props: Props) => {
 	const [events, setEvents] = useState([])
+	const [newEventData, setNewEventData] = useState<
+		| {
+				color_theme: number
+				weekStart: Date
+				timeStart: Date
+				timeEnd: Date
+				category: number
+				name: string
+				description: string
+		  }
+		| undefined
+	>(undefined)
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+	const gridRef = useRef<HTMLDivElement>(null)
+	const [onClickCreateEvent, setOnClickCreateEvent] = useState(false)
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current && ['cell', 'hour-line'].includes((event.target as HTMLDivElement).className)) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			setMousePos({ x: mousePosX, y: mousePosY })
+			setOnClickCreateEvent(true)
+		}
+	}
+
+	const handleMouseUp = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			if (onClickCreateEvent) {
+				setModalData(
+					<EventModal mode={'create'} title={''} timeStart={new Date()} timeEnd={new Date()} description={''} />,
+				)
+				setNewEventData({
+					color_theme: 0,
+					weekStart: props.weekStart,
+					timeStart: calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart),
+					timeEnd: calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart),
+					category: 0,
+					name: '',
+					description: '',
+				})
+				setIsModalOpen(true)
+				setOnClickCreateEvent(false)
+			}
+		}
+	}
+
 	const showModal = () => {
 		setIsModalOpen(true)
 	}
 	const [modalData, setModalData] = useState(<></>)
+
 	useEffect(() => {
 		const getEvents = async (weekStart: Date) => {
 			try {
@@ -56,7 +117,15 @@ const WeekGrid = (props: Props) => {
 		getEvents(props.weekStart)
 	}, [])
 	return (
-		<>
+		<div
+			className='grid-view'
+			ref={gridRef}
+			onMouseDown={(event) => {
+				handleMouseDown(event)
+			}}
+			onMouseUp={(events) => {
+				handleMouseUp(events)
+			}}>
 			{Array.from(Array(24).keys()).map((e, id) => (
 				<div key={id} className='line'>
 					{Line(id)}
@@ -78,15 +147,29 @@ const WeekGrid = (props: Props) => {
 							setModalData={setModalData}></Event>
 					)
 				})}
+			{newEventData && (
+				<Event
+					color_theme={newEventData.color_theme}
+					weekStart={newEventData.weekStart}
+					timeStart={newEventData.timeStart}
+					timeEnd={newEventData.timeEnd}
+					category={newEventData.category}
+					name={newEventData.name}
+					description={newEventData.description}
+					setIsModalOpen={false}
+					setModalData={null}
+				/>
+			)}
 			<Modal
 				style={{ zIndex: 1000 }}
 				open={isModalOpen}
 				onCancel={() => {
+					setNewEventData(undefined)
 					setIsModalOpen(false)
 				}}>
 				{modalData}
 			</Modal>
-		</>
+		</div>
 	)
 }
 
