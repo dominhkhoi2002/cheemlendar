@@ -54,8 +54,8 @@ const WeekGrid = (props: Props) => {
 	const gridRef = useRef<HTMLDivElement>(null)
 	const [onClickCreateEvent, setOnClickCreateEvent] = useState(false)
 	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		event.preventDefault()
 		if (gridRef.current && ['cell', 'hour-line'].includes((event.target as HTMLDivElement).className)) {
+			event.preventDefault()
 			const { left, top } = gridRef.current.getBoundingClientRect()
 			const mousePosX = event.clientX - left
 			const mousePosY = event.clientY - top + gridRef.current.scrollTop
@@ -91,9 +91,8 @@ const WeekGrid = (props: Props) => {
 			const mousePosX = event.clientX - left
 			const mousePosY = event.clientY - top + gridRef.current.scrollTop
 			if (onClickCreateEvent) {
-				let timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
-				let timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
-				console.log(timeStart, timeEnd)
+				const timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
+				const timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
 				setModalData(<EventModal mode={'create'} title={''} timeStart={timeStart} timeEnd={timeEnd} description={''} />)
 				setNewEventData({
 					color_theme: 0,
@@ -185,6 +184,7 @@ const WeekGrid = (props: Props) => {
 				style={{ zIndex: 1000 }}
 				open={isModalOpen}
 				onCancel={() => {
+					setModalData(<></>)
 					setNewEventData(undefined)
 					setIsModalOpen(false)
 				}}>
