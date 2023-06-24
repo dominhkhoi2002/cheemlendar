@@ -29,9 +29,66 @@ const Line = (hour: number) => {
 const WeekGrid = (props: Props) => {
 	const [events, setEvents] = useState([])
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const showModal = () => {
-		setIsModalOpen(true)
+	const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+	const gridRef = useRef<HTMLDivElement>(null)
+	const [onClickCreateEvent, setOnClickCreateEvent] = useState(false)
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current && ['cell', 'hour-line'].includes((event.target as HTMLDivElement).className)) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			setMousePos({ x: mousePosX, y: mousePosY })
+			setOnClickCreateEvent(true)
+		}
 	}
+
+	const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			if (onClickCreateEvent) {
+				setNewEventData({
+					color_theme: 0,
+					weekStart: props.weekStart,
+					timeStart: calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart),
+					timeEnd: calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart),
+					category: 0,
+					name: '',
+					description: '',
+				})
+			}
+		}
+	}
+
+	const handleMouseUp = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			if (onClickCreateEvent) {
+				let timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
+				let timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
+				console.log(timeStart, timeEnd)
+				setModalData(<EventModal mode={'create'} title={''} timeStart={timeStart} timeEnd={timeEnd} description={''} />)
+				setNewEventData({
+					color_theme: 0,
+					weekStart: props.weekStart,
+					timeStart: timeStart,
+					timeEnd: timeEnd,
+					category: 0,
+					name: '',
+					description: '',
+				})
+				setIsModalOpen(true)
+				setOnClickCreateEvent(false)
+			}
+		}
+	}
+
 	const [modalData, setModalData] = useState(<></>)
 	useEffect(() => {
 		const getEvents = async (weekStart: Date) => {
@@ -56,7 +113,18 @@ const WeekGrid = (props: Props) => {
 		getEvents(props.weekStart)
 	}, [])
 	return (
-		<>
+		<div
+			className='grid-view'
+			ref={gridRef}
+			onMouseDown={(event) => {
+				handleMouseDown(event)
+			}}
+			onMouseUp={(events) => {
+				handleMouseUp(events)
+			}}
+			onMouseMove={(events) => {
+				handleMouseMove(events)
+			}}>
 			{Array.from(Array(24).keys()).map((e, id) => (
 				<div key={id} className='line'>
 					{Line(id)}
