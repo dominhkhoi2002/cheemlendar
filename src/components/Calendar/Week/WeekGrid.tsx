@@ -64,6 +64,26 @@ const WeekGrid = (props: Props) => {
 		}
 	}
 
+	const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		event.preventDefault()
+		if (gridRef.current) {
+			const { left, top } = gridRef.current.getBoundingClientRect()
+			const mousePosX = event.clientX - left
+			const mousePosY = event.clientY - top + gridRef.current.scrollTop
+			if (onClickCreateEvent) {
+				setNewEventData({
+					color_theme: 0,
+					weekStart: props.weekStart,
+					timeStart: calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart),
+					timeEnd: calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart),
+					category: 0,
+					name: '',
+					description: '',
+				})
+			}
+		}
+	}
+
 	const handleMouseUp = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		event.preventDefault()
 		if (gridRef.current) {
@@ -71,14 +91,15 @@ const WeekGrid = (props: Props) => {
 			const mousePosX = event.clientX - left
 			const mousePosY = event.clientY - top + gridRef.current.scrollTop
 			if (onClickCreateEvent) {
-				setModalData(
-					<EventModal mode={'create'} title={''} timeStart={new Date()} timeEnd={new Date()} description={''} />,
-				)
+				let timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
+				let timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
+				console.log(timeStart, timeEnd)
+				setModalData(<EventModal mode={'create'} title={''} timeStart={timeStart} timeEnd={timeEnd} description={''} />)
 				setNewEventData({
 					color_theme: 0,
 					weekStart: props.weekStart,
-					timeStart: calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart),
-					timeEnd: calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart),
+					timeStart: timeStart,
+					timeEnd: timeEnd,
 					category: 0,
 					name: '',
 					description: '',
@@ -89,9 +110,6 @@ const WeekGrid = (props: Props) => {
 		}
 	}
 
-	const showModal = () => {
-		setIsModalOpen(true)
-	}
 	const [modalData, setModalData] = useState(<></>)
 
 	useEffect(() => {
@@ -125,6 +143,9 @@ const WeekGrid = (props: Props) => {
 			}}
 			onMouseUp={(events) => {
 				handleMouseUp(events)
+			}}
+			onMouseMove={(events) => {
+				handleMouseMove(events)
 			}}>
 			{Array.from(Array(24).keys()).map((e, id) => (
 				<div key={id} className='line'>
