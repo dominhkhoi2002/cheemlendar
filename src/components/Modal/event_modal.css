@@ -28,7 +28,8 @@
 	align-items: center;
 }
 .team-ctn,
-.description-ctn {
+.description-ctn,
+.calendar-select-ctn {
 	display: flex;
 	gap: 10px;
 	margin: 10px auto;

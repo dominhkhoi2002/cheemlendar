@@ -5,10 +5,12 @@ import Event from './Event'
 import axios from 'axios'
 import { Modal } from 'antd'
 import EventModal from '@/components/Modal/EventModal'
+import API_BASE_URL from '../../../utils/config'
+
 type Props = {
 	weekStart: Date
+	calendarCategory: any
 }
-const API_BASE_URL = 'http://localhost:4001/api'
 const headers = {
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -43,7 +45,7 @@ const WeekGrid = (props: Props) => {
 				weekStart: Date
 				timeStart: Date
 				timeEnd: Date
-				category: number
+				category: number | null
 				name: string
 				description: string
 		  }
@@ -76,7 +78,7 @@ const WeekGrid = (props: Props) => {
 					weekStart: props.weekStart,
 					timeStart: calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart),
 					timeEnd: calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart),
-					category: 0,
+					category: null,
 					name: '',
 					description: '',
 				})
@@ -93,13 +95,23 @@ const WeekGrid = (props: Props) => {
 			if (onClickCreateEvent) {
 				const timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
 				const timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
-				setModalData(<EventModal mode={'create'} title={''} timeStart={timeStart} timeEnd={timeEnd} description={''} />)
+				setModalData(
+					<EventModal
+						mode={'create'}
+						title={''}
+						timeStart={timeStart}
+						timeEnd={timeEnd}
+						category={null}
+						description={''}
+						calendarCategory={props.calendarCategory}
+					/>,
+				)
 				setNewEventData({
 					color_theme: 0,
 					weekStart: props.weekStart,
 					timeStart: timeStart,
 					timeEnd: timeEnd,
-					category: 0,
+					category: null,
 					name: '',
 					description: '',
 				})
@@ -133,6 +145,11 @@ const WeekGrid = (props: Props) => {
 		}
 		getEvents(props.weekStart)
 	}, [])
+
+	function handleSubmit() {
+		console.log(modalData.props)
+	}
+
 	return (
 		<div
 			className='grid-view'
@@ -187,7 +204,8 @@ const WeekGrid = (props: Props) => {
 					setModalData(<></>)
 					setNewEventData(undefined)
 					setIsModalOpen(false)
-				}}>
+				}}
+				onOk={handleSubmit}>
 				{modalData}
 			</Modal>
 		</div>

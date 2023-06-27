@@ -9,7 +9,7 @@ type Props = {
 	weekStart: Date
 	timeStart: Date
 	timeEnd: Date
-	category: number
+	category: number | null
 	name: string
 	description: string
 	setIsModalOpen: any
@@ -72,6 +72,8 @@ const Event = (props: Props) => {
 									timeStart={props.timeStart}
 									timeEnd={props.timeEnd}
 									description={props.description}
+									category={props.category}
+									calendarCategory={null}
 								/>,
 							)
 						}}
