@@ -19,6 +19,13 @@
 	gap: 10px;
 	margin: 10px auto;
 }
+.color-picker {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	padding-left: 40px;
+}
 .tp {
 	width: 80px;
 }

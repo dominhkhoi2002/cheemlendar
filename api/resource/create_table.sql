@@ -18,12 +18,14 @@ CREATE TABLE Events (
     start_datetime DATETIME,
     end_datetime DATETIME,
     color_theme INT,
+    task_id INT,
     description VARCHAR(255),
     FOREIGN KEY(calendar_id) REFERENCES Calendar(calendar_id)
 );
 CREATE TABLE Team (
     team_id INT PRIMARY KEY AUTO_INCREMENT,
     team_name VARCHAR(30),
+    public BOOLEAN,
     description VARCHAR(255)
 );
 CREATE TABLE Team_member (
@@ -44,6 +46,9 @@ CREATE TABLE Task (
     FOREIGN KEY(team_id) REFERENCES Team(team_id),
     FOREIGN KEY(parent_task_id) REFERENCES Task(task_id)
 );
+
+ALTER TABLE Events ADD FOREIGN KEY(task_id) REFERENCES Task(task_id);
+
 CREATE TABLE Task_assign (
     task_id INT,
     user_id INT,
@@ -75,10 +80,10 @@ VALUES (1, 'AI Intro', '2023-06-19 08:25:00', '2023-06-19 11:45:00', 'Học Nh�
       (2, 'Intern', '2023-06-21 08:00:00', '2023-06-21 11:30:00', 'Thực tập', 1),
       (2, 'Intern', '2023-06-20 12:30:00', '2023-06-20 17:30:00', 'Thực tập', 1);
 
-INSERT INTO Team (team_id, team_name, description)
-VALUES (1, 'SAMI sama', 'Vì 10 điểm giải tích, đại số'),
-      (2, 'Monke', 'BK ko sợ tạch'),
-      (3, 'Eula simp', 'Eula rerun when (づ｡◕‿‿◕｡)づ');
+INSERT INTO Team (team_id, team_name, description, public)
+VALUES (1, 'SAMI sama', 'Vì 10 điểm giải tích, đại số', true),
+      (2, 'Monke', 'BK ko sợ tạch', true),
+      (3, 'Eula simp', 'Eula rerun when (づ｡◕‿‿◕｡)づ', false);
 
 INSERT INTO Team_member (team_id, user_id, is_leader)
 VALUES (1, 1, true),

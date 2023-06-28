@@ -51,6 +51,7 @@ const WeekGrid = (props: Props) => {
 		  }
 		| undefined
 	>(undefined)
+	const [modalData, setModalData] = useState({})
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
 	const gridRef = useRef<HTMLDivElement>(null)
@@ -95,17 +96,15 @@ const WeekGrid = (props: Props) => {
 			if (onClickCreateEvent) {
 				const timeStart = calculateTimeOnPosition(mousePos.x, mousePos.y, props.weekStart)
 				const timeEnd = calculateTimeOnPosition(mousePosX, mousePosY, props.weekStart)
-				setModalData(
-					<EventModal
-						mode={'create'}
-						title={''}
-						timeStart={timeStart}
-						timeEnd={timeEnd}
-						category={null}
-						description={''}
-						calendarCategory={props.calendarCategory}
-					/>,
-				)
+				setModalData({
+					mode: 'create',
+					title: '',
+					timeStart: timeStart,
+					timeEnd: timeEnd,
+					category: 0,
+					colorTheme: 0,
+					description: '',
+				})
 				setNewEventData({
 					color_theme: 0,
 					weekStart: props.weekStart,
@@ -120,8 +119,6 @@ const WeekGrid = (props: Props) => {
 			}
 		}
 	}
-
-	const [modalData, setModalData] = useState(<></>)
 
 	useEffect(() => {
 		const getEvents = async (weekStart: Date) => {
@@ -146,8 +143,12 @@ const WeekGrid = (props: Props) => {
 		getEvents(props.weekStart)
 	}, [])
 
+	const onDataChange = (newData: any) => {
+		setModalData(Object.assign({}, modalData, newData))
+	}
+
 	function handleSubmit() {
-		console.log(modalData.props)
+		console.log(modalData)
 	}
 
 	return (
@@ -179,14 +180,14 @@ const WeekGrid = (props: Props) => {
 							category={e['color_theme']}
 							name={e['event_title']}
 							description={e['description']}
-							color_theme={e['color_theme']}
+							colorTheme={e['color_theme']}
 							setIsModalOpen={setIsModalOpen}
 							setModalData={setModalData}></Event>
 					)
 				})}
 			{newEventData && (
 				<Event
-					color_theme={newEventData.color_theme}
+					colorTheme={newEventData.color_theme}
 					weekStart={newEventData.weekStart}
 					timeStart={newEventData.timeStart}
 					timeEnd={newEventData.timeEnd}
@@ -201,12 +202,12 @@ const WeekGrid = (props: Props) => {
 				style={{ zIndex: 1000 }}
 				open={isModalOpen}
 				onCancel={() => {
-					setModalData(<></>)
+					setModalData({})
 					setNewEventData(undefined)
 					setIsModalOpen(false)
 				}}
 				onOk={handleSubmit}>
-				{modalData}
+				<EventModal data={modalData} calendarCategory={props.calendarCategory} onDataChange={onDataChange}></EventModal>
 			</Modal>
 		</div>
 	)
