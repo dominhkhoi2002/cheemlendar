@@ -1,11 +1,11 @@
 'use client'
-import JoinedTeam from '@/components/Team/JoinedTeam/joined'
-
 import React from 'react'
+import Detail from '@/components/Team/TeamDetail/Detail'
+
 type Props = {}
 
 const page = (props: Props) => {
-	return <JoinedTeam></JoinedTeam>
+	return <Detail />
 }
 
 export default page

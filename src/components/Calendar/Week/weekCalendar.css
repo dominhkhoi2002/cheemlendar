@@ -1,11 +1,12 @@
 .week-header {
-  display: flex;
+	display: flex;
+	margin-bottom: 15px;
 }
 .grid-view {
-  position: relative;
-  height: 75vh;
-  width: max-content;
-  overflow-y: scroll;
-  margin-bottom: 20px;
-  cursor: pointer;
+	position: relative;
+	height: 75vh;
+	width: max-content;
+	overflow-y: scroll;
+	margin-bottom: 20px;
+	cursor: pointer;
 }
