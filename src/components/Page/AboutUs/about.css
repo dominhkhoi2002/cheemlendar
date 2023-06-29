@@ -1,31 +1,7 @@
-.left-panel {
+.Image-ctn{
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    margin-left: 60px;
-    align-items: flex-start;
-    width: 40%;
-    padding: 10px;
-    padding-top: 15vh;
-}
-.right-panel {
-    display: flex;
-    justify-content: center;
-    width: 40%;
-    padding-top: 20vh;
-}
-.seperate-line{
-display: flex;
-justify-content: center;
-height: 0px;
-width: 100px;
-border: 3px solid rgba(0, 0, 0, 0.2);
-transform: rotate(90deg);
-}
-.dot1
-{
-width: 22px;
-height: 21px;
-left: 499px;
-top: 513px;
-background: #FF7E04;
+    justify-content: top;
+    align-items: top;
 }
